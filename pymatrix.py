@@ -90,6 +90,15 @@ class Matrix:
   def __len__(s):
     return s.row * s.column
 
+  def __eq__(s, B):
+    if s.has_same_type(B):
+      for i in xrange(s.row):
+        for j in xrange(s.column):
+          if s[i, j] != B[i, j]:
+            return False
+      return True
+    return False
+
   def mult(s, A, B):
     if isinstance(A, Matrix):
       if isinstance(B, Matrix):
@@ -216,8 +225,7 @@ def main():
   print r
 
   m = mat ** 1024
-
-  print ~m
+  print ~m * m == Matrix.I(2)
 
 if __name__ == "__main__":
   main()
