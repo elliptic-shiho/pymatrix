@@ -30,12 +30,11 @@ class Matrix:
       raise RuntimeError("Invalid Argument")
 
   def __str__(s):
-    res = ""
     value_str = [map(str, x) for x in s.data]
     max_len = max([max(map(len, x)) for x in value_str])
-    value_str = ["[" + " ".join(map(lambda x: x.ljust(y + 1), x)).rstrip() + "]"
+    value_str = ["[" + " ".join(map(lambda x: x.ljust(y + 1), x)) + "]"
                  for x, y in zip(value_str, itertools.repeat(max_len))]
-    return res + "\n" + "\n".join(value_str)
+    return "\n".join(value_str)
 
   def __repr__(s):
     return "Matrix(%d, %d, %d, %s)" % (s.row, s.column, s.modulo, s.data)
@@ -50,7 +49,7 @@ class Matrix:
     return C
 
   def __sub__(s, B):
-    return s + (-1*B)
+    return s + (-1 * B)
 
   def __rsub__(s, A):
     return A + (-1 * s)
